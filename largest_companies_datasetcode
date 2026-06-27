@@ -1,0 +1,10 @@
+import requests
+from io import StringIO
+headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.3; Win 64 ; x64) Apple WeKit /537.36(KHTML , like Gecko) Chrome/80.0.3987.162 Safari/537.36'}
+response=requests.get("https://en.wikipedia.org/wiki/List_of_largest_companies_by_revenue",headers=headers).text
+tables = pd.read_html(StringIO(response))
+from IPython.display import display
+
+for i, table in enumerate(tables):
+    print(f"Table {i}")
+    display(table)
